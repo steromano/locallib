@@ -84,25 +84,6 @@ read_dcf_error <- function(pkg) {
 }
 
 
-# global packages ---------------------------------------------------------
-
-
-global_pkgs <- function() {
-  c(BASE_AND_RECOMMENDED, "drat", "git2r", "locallib", "yaml")
-}
-
-
-global_libs <- function() {
-  out <- .libPaths()
-
-  if (is.activated()) {
-    out <- Filter(function(x) x != local_lib(), .libPaths())
-  }
-
-  out
-}
-
-
 # package dependencies ----------------------------------------------------
 
 

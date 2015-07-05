@@ -6,7 +6,7 @@
 create_local_lib <- function(path = NULL) {
   path <- normalize_path(path)
 
-  if (is.activated()) {
+  if (is.local_mode_on()) {
     if (path == local_lib()) {
       message("local library already activated ", bracket(local_lib()))
       return(invisible())
@@ -38,13 +38,11 @@ create_local_lib <- function(path = NULL) {
   invisible()
 }
 
-
 has_local_lib <- function(path) {
   # NOTE: doesn't use local_lib() as this function might be called
   # when local library is not activated
   file.exists(path) && file.exists(file.path(path, "library"))
 }
-
 
 local_lib <- function() {
   file.path(meta_data$path, "library")

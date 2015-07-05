@@ -6,7 +6,11 @@
 use_local_lib <- function(path = NULL) {
   path <- normalize_path(path)
 
-  if (is.activated()) {
+  if (is.global_mode_on()) {
+    error("global libraries are active. Restat R to activate a local library")
+  }
+
+  if (is.local_mode_on()) {
     if (path == meta_data$path) {
       message("local library already activated ", bracket(local_lib()))
       return(invisible())
@@ -27,15 +31,15 @@ use_local_lib <- function(path = NULL) {
   lib_path <- file.path(path, "library")
   .libPaths(c(lib_path, .libPaths()))
 
-  meta_data$activated <- TRUE
+  meta_data$local_mode_on <- TRUE
   meta_data$path <- path
 
   invisible()
 }
 
 
-is.activated <- function() {
-  meta_data$activated
+is.local_mode_on <- function() {
+  meta_data$local_mode_on
 }
 
 
@@ -43,6 +47,7 @@ is.activated <- function() {
 
 
 meta_data <- new.env()
-meta_data$activated <- FALSE
+meta_data$local_mode_on <- FALSE
+meta_data$global_mode_on <- FALSE
 meta_data$path <- NULL
 meta_data$repo_path <- NULL

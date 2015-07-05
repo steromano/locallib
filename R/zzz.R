@@ -1,5 +1,5 @@
 .onLoad <- function(libname, pkgname) {
-  for (lib_path in global_libs()) {
+  for (lib_path in external_libs()) {
     lib_warning(lib_path)
   }
 
@@ -11,7 +11,7 @@ lib_warning <- function(path) {
   pkgs <- list.files(path)
 
   for (pkg in pkgs) {
-    if (pkg %notin% global_pkgs()) {
+    if (pkg %notin% external_pkgs()) {
       warn("the package ", pkg, " is installed in a global library ", bracket(path))
     }
   }

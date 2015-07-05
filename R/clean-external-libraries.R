@@ -1,12 +1,12 @@
 #' Clean global libraries
 #'
 #' @export
-clean_global_libs <- function() {
-  paths <- unlist(lapply(global_libs(), list.files, full.names = TRUE))
-  paths <- Filter(function(path) basename(path) %notin% global_pkgs(), paths)
+clean_external_libs <- function() {
+  paths <- unlist(lapply(external_libs(), list.files, full.names = TRUE))
+  paths <- Filter(function(path) basename(path) %notin% external_pkgs(), paths)
 
   if (length(paths) == 0) {
-    message("Global library is already clean")
+    message("External libraries already clean")
     return(invisible())
   }
 
@@ -24,7 +24,7 @@ clean_global_libs <- function() {
     return(invisible())
   }
 
-  message("cleaning global library(s)")
+  message("cleaning external library(s)")
 
   for (path in paths) {
     pkg <- basename(path)
@@ -40,6 +40,27 @@ clean_global_libs <- function() {
     )
   }
 }
+
+external_pkgs <- function() {
+  c(BASE_AND_RECOMMENDED, "drat", "git2r", "locallib", "yaml")
+}
+
+
+external_libs <- function() {
+  out <- .libPaths()
+
+  ll_home <- locallib_home()
+  if (!is.na(ll_home)) {
+    out <- Filter(function(x) !grepl(ll_home, x), out)
+  }
+
+  if (is.local_mode_on()) {
+    out <- Filter(function(x) x != local_lib(), out)
+  }
+
+  out
+}
+
 
 
 
