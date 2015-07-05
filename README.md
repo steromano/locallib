@@ -43,7 +43,7 @@ Instead the following is recommended:
 See the `examples/` sub-directory for typically usage patterns.
 
 
-### Global libraries
+## Global libraries
 In this branch we explore the possibility of supporting "global" libraries. Here is how it works:
 
   - This functionality requires the environment variable `LOCALLIB_HOME` to be set. This is the path of a folder where all the global libraries live (e.g. `~/.locallib`).
