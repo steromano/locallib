@@ -41,3 +41,16 @@ Instead the following is recommended:
 ## Examples
 
 See the `examples/` sub-directory for typically usage patterns.
+
+
+### Global libraries
+In this branch we explore the possibility of supporting "global" libraries. Here is how it works:
+
+  - This functionality requires the environment variable `LOCALLIB_HOME` to be set. This is the path of a folder where all the global libraries live (e.g. `~/.locallib`).
+  - Create and activate a global library with
+  ```R
+  create_global_lib("mylib")
+  use_global_lib("mylib")
+  ```
+  This will only work if no local library is already activated in the current session. On the other hand, multiple global libraries can be activated at the same time.
+  - In master, the term `global` refers to the default libraries loaded at startup, which should only contain base packages. In these branch these libraries are referred to as `external` (naming is as usual up for discussion).
