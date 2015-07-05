@@ -48,6 +48,7 @@ In this branch we explore the possibility of supporting "global" libraries. Here
 
   - This functionality requires the environment variable `LOCALLIB_HOME` to be set. This is the path of a folder where all the global libraries live (e.g. `~/.locallib`).
   - Create and activate a global library with
+  
   ```R
   create_global_lib("mylib")
   use_global_lib("mylib")
