@@ -5,9 +5,9 @@
 #'
 #' @export
 create_.Rprofile <- function(path = NULL) {
-  if (is.activated()) {
-    error("local library must be deactivated to create a .Rprofile")
-  }
+#   if (is.activated()) {
+#     error("local library must be deactivated to create a .Rprofile")
+#   }
 
   path <- normalize_path(path)
 

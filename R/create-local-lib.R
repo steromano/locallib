@@ -6,17 +6,17 @@
 create_local_lib <- function(path = NULL) {
   path <- normalize_path(path)
 
-  if (is.activated()) {
-    if (path == local_lib()) {
-      message("local library already activated ", bracket(local_lib()))
-      return(invisible())
-    }
-
-    error(
-      "a different local library is already activated", bracket(local_lib()), ". ",
-      "Restart R session to create a new one"
-    )
-  }
+#   if (is.activated()) {
+#     if (path == local_lib()) {
+#       message("local library already activated ", bracket(local_lib()))
+#       return(invisible())
+#     }
+# 
+#     error(
+#       "a different local library is already activated", bracket(local_lib()), ". ",
+#       "Restart R session to create a new one"
+#     )
+#   }
 
   if (has_local_lib(path)) {
     message("a local library has already been created in this directory", bracket(path))
