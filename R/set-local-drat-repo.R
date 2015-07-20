@@ -33,7 +33,13 @@ is.valid_local_drat_repo <- function(path) {
 }
 
 
+## Temporary fix for supporting setting the drat repo via environment variable
+## TODO: improve this
 is.local_drat_repo_set <- function() {
+  drat_repo <- Sys.getenv("DRAT_REPO")
+  if (file.exists(drat_repo) && file.info(drat_repo)$isdir) {
+    meta_data$repo_path <- drat_repo
+  } 
   !is.null(meta_data$repo_path)
 }
 
