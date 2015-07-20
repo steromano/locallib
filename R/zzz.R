@@ -2,8 +2,9 @@
   for (lib_path in global_libs()) {
     lib_warning(lib_path)
   }
-
-  options(repos = "http://cran.rstudio.com")
+  
+  ## too invasive!
+  # options(repos = "http://cran.rstudio.com")
 }
 
 
