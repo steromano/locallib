@@ -18,10 +18,14 @@ download_file <- function(url, destfile, ...) {
 
 
 # can return multiple urls if multiple repositories have been set
+# this causes problems if packages are installed locally from source
+# (despite my attempted quickfix):
+# Error in if (!(is.latest_version(pkg, version) %||% TRUE) && archive) { : 
+#     missing value where TRUE/FALSE needed
 pkg_urls <- function(pkg, version, archive) {
   pkg._ <- pkg_file(pkg, version)
 
-  if (!is.latest_version(pkg, version) && archive) {
+  if (!(is.latest_version(pkg, version) %||% TRUE) && archive) {
     base_url <- paste0("00Archive/", pkg, "/", pkg._)
   } else {
     base_url <- pkg._
